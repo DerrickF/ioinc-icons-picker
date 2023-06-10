@@ -13,7 +13,6 @@ To use the extension:
 3. Browse the available icons and select the desired one.
 4. The selected icon will be inserted at the current cursor position in the active editor.
 
-![Icon Picker](images/icon-picker.gif)
 
 ## Requirements
 
