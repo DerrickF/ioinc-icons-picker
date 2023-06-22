@@ -1,16 +1,8 @@
 import * as vscode from 'vscode';
 import axios from 'axios';
-import * as path from 'path';
-import * as fs from 'fs';
 
 let panel: vscode.WebviewPanel | null = null;
 let messageListener: vscode.Disposable | null = null;
-
-function svgToBase64(filePath: string) {
-    const svg = fs.readFileSync(filePath);
-    const base64 = Buffer.from(svg).toString('base64');
-    return 'data:image/svg+xml;base64,' + base64;
-}
 
 export async function activate(context: vscode.ExtensionContext) {
     
@@ -24,7 +16,7 @@ export async function activate(context: vscode.ExtensionContext) {
 
             try {
                 const response = await axios.get(
-                    'https://ionicons.com/ionicons.json'
+                    'https://ionic.io/ionicons/ionicons.json'
                 );
 
                 const iconsPath = context.asAbsolutePath(
@@ -87,26 +79,30 @@ export async function activate(context: vscode.ExtensionContext) {
                     context.subscriptions
                 );
 
-                let t = {}.toString();
-
                 let iconsHtml = '';
 
                 // This is inside your registerCommand callback:
                 for (const icon of response.data.icons) {
-                    const iconSvgPath = path.join(
-                        iconsPath,
-                        `${icon.name}.svg`
-                    );
-                    const iconBase64 = svgToBase64(iconSvgPath); // Here you convert the SVG file to base64
-                    iconsHtml += `<li class="icon-item" data-name="${icon.name}"><img src="${iconBase64}" class="icon" /><span>${icon.name}</span></li>`; // And here you use the base64 string as the source for the image
+                    const icpath = panel.webview.asWebviewUri(vscode.Uri.file(
+                        vscode.Uri.joinPath(context.extensionUri, 'node_modules', 'ionicons', 'dist', 'ionicons', 'svg', `${icon.name}.svg`).fsPath
+                    ))
+                    iconsHtml += `<li class="icon-item" data-name=${icon.name}><ion-icon class="icon" size="small" src="${icpath}"></ion-icon> ${icon.name}</li>`;
                 }
 
                 panel.webview.html = `
+                <script type="module" src="https://unpkg.com/ionicons@7.1.0/dist/ionicons/ionicons.esm.js"></script>
+                <script nomodule src="https://unpkg.com/ionicons@7.1.0/dist/ionicons/ionicons.js"></script>
                 <style>
+                    body {
+                        background-color: #f5f5f5;
+                        color: black;
+                        list-style: none;
+                    }
                     .icon {
                         width: 32px;
                         height: 32px;
                         margin-right: 10px;
+                        color: black;
                     }
                     .icon-item {
                         display: flex;
@@ -117,7 +113,9 @@ export async function activate(context: vscode.ExtensionContext) {
                 </style>
                 <input type="text" id="search" placeholder="Search" />
                 <ul>${iconsHtml}</ul>
+              
                 <script>
+                    
                     const vscode = acquireVsCodeApi();
                     document.getElementById('search').addEventListener('input', (event) => {
                         const searchTerm = event.target.value.toLowerCase();
