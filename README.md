@@ -1,6 +1,6 @@
 # ionic-icons-picker README
 
-Welcome to this extension
+Welcome to the Ionic Icons Picker extension!
 
 ## Features
 
@@ -8,19 +8,29 @@ The ionic-icons-picker extension provides a convenient way to browse and select 
 
 To use the extension:
 
-1. Open the command palette (Ctrl+Shift+P or Cmd+Shift+P).
-2. Select the "Pick Ionic Icon" command to open the icon picker.
-3. Browse the available icons and select the desired one.
-4. The selected icon will be inserted at the current cursor position in the active editor.
+1. Browse the available icons visually, no need to remember exact names.
+2. Use the search bar to find icons based on their names.
+3. Navigate through the icon list using the up and down arrow keys on your keyboard.
+4. Press Enter to select an icon. The name of the icon is automatically copied and the cursor is returned to its last position in the active editor.
+ 
+To use the extension:
 
+Open the command palette (Ctrl+Shift+P or Cmd+Shift+P).
+Select the "Pick Ionic Icon" command to open the icon picker.
+
+Here it is in action
+
+![Picking An Icon](./src/Jun-26-2023%2016-30-06.gif)
 
 ## Requirements
 
-To use the ionic-icons-picker extension, you need to have Visual Studio Code installed on your machine.
+Ionic Icons Picker requires Visual Studio Code version 1.62.0 or later. Please ensure your Visual Studio Code is up to date.
 
-## Extension Settings
+## Installation
 
-The ionic-icons-picker extension doesn't add any custom settings.
+1. Open Visual Studio Code.
+2. Navigate to the Extensions view (Ctrl+Shift+X or Cmd+Shift+X).
+3. Search for "Ionic Icons Picker" and click the Install button.
 
 ## Known Issues
 
