@@ -45,3 +45,4 @@ Initial release of ionic-icons-picker.
 ## Feedback and Contributing
 
 If you encounter any issues with the ionic-icons-picker extension or have suggestions for improvement, please don't hesitate to open an issue on [GitHub](https://github.com/derrickf/ionic-icons-picker). Contributions are also welcome!
+

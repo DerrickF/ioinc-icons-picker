@@ -4,12 +4,13 @@
   "description": "Introducing the Ionic Ionicons Picker, a VS Code extension designed to streamline your development process when using the Ionic's Ionicons library.",
   "repository": {"url": "https://github.com/DerrickF/ioinc-icons-picker"},
   "license": "MIT",
-  "version": "0.0.1",
+  "version": "0.0.2",
   "engines": {
     "vscode": "^1.79.0"
   },
+  "publisher": "IonicIconsPicker",
   "categories": [
-    "Other"
+      "Other"
   ],
   "activationEvents": [
     "onCommand:extension.pickIcon"
@@ -23,6 +24,8 @@
       }
     ]
   },
+  "icon": "assets/IconPickerLogo.png",
+  "pricing": "Free",
   "scripts": {
     "vscode:prepublish": "npm run package",
     "compile": "webpack",
