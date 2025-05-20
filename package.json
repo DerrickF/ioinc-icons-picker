@@ -6,7 +6,7 @@
     "url": "https://github.com/DerrickF/ioinc-icons-picker"
   },
   "license": "MIT",
-  "version": "0.0.3",
+  "version": "0.0.4",
   "engines": {
     "vscode": "^1.79.0"
   },
@@ -22,7 +22,7 @@
     "commands": [
       {
         "command": "extension.pickIcon",
-        "title": "Open Icon Picker"
+        "title": "Open Ionic Icon Picker"
       }
     ]
   },
@@ -37,7 +37,8 @@
     "watch-tests": "tsc -p . -w --outDir out",
     "pretest": "npm run compile-tests && npm run compile && npm run lint",
     "lint": "eslint src --ext ts",
-    "test": "node ./out/test/runTest.js"
+    "test": "node ./out/test/runTest.js",
+    "package-and-publish": "vsce package && vsce publish"
   },
   "devDependencies": {
     "@types/glob": "^8.1.0",

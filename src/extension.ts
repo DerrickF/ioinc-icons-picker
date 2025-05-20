@@ -71,22 +71,24 @@ export async function activate(context: vscode.ExtensionContext) {
 
                 messageListener = panel.webview.onDidReceiveMessage(
                     async (message) => {
-                        switch (message.command) {
-                            case 'copyIconName':
-                                vscode.window.showInformationMessage(
-                                    'copied to clipboard!'
-                                );
-                                if (lastActiveEditor) {
-                                    try {
-                                        await vscode.env.clipboard.writeText(message.name);
-                                        await vscode.window.showTextDocument(lastActiveEditor.document, lastActiveEditor.viewColumn);
-                                    } catch (e) {
-                                        console.log(
-                                            `Failed to insert snippet: ${e}`
-                                        );
-                                    }
-                                }
-                            return;
+
+                        if(message.command === 'copyIconName') {
+                            vscode.window.showInformationMessage(
+                                'copied to clipboard!'
+                            );
+                        }
+
+                        if(lastActiveEditor) {
+                            try {
+                                await vscode.env.clipboard.writeText(message.name);
+                                await vscode.window.showTextDocument(lastActiveEditor.document, lastActiveEditor.viewColumn);
+                            } catch (e) {
+                                console.log(`Failed to insert snippet: ${e}`);
+                            }
+                        }
+
+                        if(panel) {
+                            panel.dispose();
                         }
                     },
                     undefined,
